@@ -15,6 +15,10 @@ import java.util.concurrent.TimeUnit;
 public class CommonAPI {
     public WebDriver driver =null;
 
+    private static void LaunchedFrom(String os){
+        System.out.println("Test Running from: "+os);
+    }
+
     @Parameters({"url"})
     @BeforeMethod
     public void setup(String url){
@@ -23,12 +27,18 @@ public class CommonAPI {
         String dir = userDir.substring(0,userDir.length()-6);
 
         String os = System.getProperty("os.name").toLowerCase();
+
+
+
         if(os.contains("win")){
             ChromeDriver = dir+"Generic/drivers/Windows/ChromeDriver/chromedriver.exe";
+            LaunchedFrom(os);
         }else if(os.contains("mac")){
             ChromeDriver = dir+"Generic/drivers/Mac/ChromeDriver/chromedriver";
+            LaunchedFrom(os);
         }else{
-
+            ChromeDriver = dir+"Generic/drivers/Linux/ChromeDriver/chromedriver";
+            LaunchedFrom(os);
         }
 
         System.setProperty("webdriver.chrome.driver",ChromeDriver);
