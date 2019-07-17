@@ -13,36 +13,35 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class CommonAPI {
-    public WebDriver driver =null;
+    public WebDriver driver = null;
 
-    private static void LaunchedFrom(String os){
-        System.out.println("Test Running from: "+os);
+    private static void LaunchedFrom(String os) {
+        System.out.println("Test Running from: " + os);
     }
 
     @Parameters({"url"})
     @BeforeMethod
-    public void setup(String url){
+    public void setup(String url) {
         String ChromeDriver = null;
         String userDir = System.getProperty("user.dir");
-        String dir = userDir.substring(0,userDir.length()-6);
+        String dir = userDir.substring(0, userDir.length() - 6);
 
         String os = System.getProperty("os.name").toLowerCase();
 
-
-
-        if(os.contains("win")){
-            ChromeDriver = dir+"Generic/drivers/Windows/ChromeDriver/chromedriver.exe";
+        if (os.contains("win")) {
+            ChromeDriver = dir + "Generic/drivers/Windows/ChromeDriver/chromedriver.exe";
             LaunchedFrom(os);
-        }else if(os.contains("mac")){
-            ChromeDriver = dir+"Generic/drivers/Mac/ChromeDriver/chromedriver";
+        } else if (os.contains("mac")) {
+            ChromeDriver = dir + "Generic/drivers/Mac/ChromeDriver/chromedriver";
             LaunchedFrom(os);
-        }else{
-            ChromeDriver = dir+"Generic/drivers/Linux/ChromeDriver/chromedriver";
+        } else {
+            ChromeDriver = dir + "Generic/drivers/Linux/ChromeDriver/chromedriver";
             LaunchedFrom(os);
         }
 
-        System.setProperty("webdriver.chrome.driver",ChromeDriver);
+        System.setProperty("webdriver.chrome.driver", ChromeDriver);
         driver = new ChromeDriver();
+        driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.navigate().to(url);
         driver.manage().window().maximize();
@@ -50,11 +49,11 @@ public class CommonAPI {
 
 
     @AfterMethod
-    public void cleanUp(){
+    public void cleanUp() {
         driver.close();
     }
 
-    public void typeByID(String id){
+    public void typeByID(String id) {
         driver.findElement(By.id(id));
     }
 

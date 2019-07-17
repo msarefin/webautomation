@@ -12,6 +12,7 @@
         <module>Generic</module>
         <module>Amazon</module>
         <module>Yahoo</module>
+        <module>Practice</module>
     </modules>
 
     <dependencyManagement>
