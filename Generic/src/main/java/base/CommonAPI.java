@@ -13,10 +13,20 @@ import java.util.concurrent.TimeUnit;
 
 public class CommonAPI {
     public WebDriver driver =null;
+
     @Parameters({"url"})
     @BeforeMethod
     public void setup(String url){
-        String ChromeDriver = "C:/Users/sunsh/IdeaProjects/WebAutomation/Generic/drivers/Windows/ChromeDriver/chromedriver.exe";
+        String ChromeDriver = null;
+        String os = System.getProperty("os.name").toLowerCase();
+        if(os.contains("win")){
+            ChromeDriver = "/Users/sunny/IdeaProjects/webautomation/Generic/drivers/Windows/ChromeDriver/chromedriver.exe";
+        }else if(os.contains("mac")){
+            ChromeDriver = "/Users/sunny/IdeaProjects/webautomation/Generic/drivers/Mac/ChromeDriver/chromedriver";
+        }else{
+
+        }
+
         System.setProperty("webdriver.chrome.driver",ChromeDriver);
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
