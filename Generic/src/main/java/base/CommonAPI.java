@@ -18,11 +18,14 @@ public class CommonAPI {
     @BeforeMethod
     public void setup(String url){
         String ChromeDriver = null;
+        String userDir = System.getProperty("user.dir");
+        String dir = userDir.substring(0,userDir.length()-6);
+
         String os = System.getProperty("os.name").toLowerCase();
         if(os.contains("win")){
-            ChromeDriver = "/Users/sunny/IdeaProjects/webautomation/Generic/drivers/Windows/ChromeDriver/chromedriver.exe";
+            ChromeDriver = dir+"Generic/drivers/Windows/ChromeDriver/chromedriver.exe";
         }else if(os.contains("mac")){
-            ChromeDriver = "/Users/sunny/IdeaProjects/webautomation/Generic/drivers/Mac/ChromeDriver/chromedriver";
+            ChromeDriver = dir+"Generic/drivers/Mac/ChromeDriver/chromedriver";
         }else{
 
         }
