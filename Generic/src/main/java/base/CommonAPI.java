@@ -1,5 +1,6 @@
 package base;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -41,6 +42,10 @@ public class CommonAPI {
     @AfterMethod
     public void cleanUp(){
         driver.close();
+    }
+
+    public void typeByID(String id){
+        driver.findElement(By.id(id));
     }
 
 
